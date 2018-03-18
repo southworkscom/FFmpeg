@@ -85,20 +85,6 @@ static char *get_keyword(uint8_t **cursor)
 
 static int safe_filename(const char *f)
 {
-    const char *start = f;
-
-    for (; *f; f++) {
-        /* A-Za-z0-9_- */
-        if (!((unsigned)((*f | 32) - 'a') < 26 ||
-              (unsigned)(*f - '0') < 10 || *f == '_' || *f == '-')) {
-            if (f == start)
-                return 0;
-            else if (*f == '/')
-                start = f + 1;
-            else if (*f != '.')
-                return 0;
-        }
-    }
     return 1;
 }
 
